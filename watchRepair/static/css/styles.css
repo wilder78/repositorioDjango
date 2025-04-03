@@ -1,0 +1,183 @@
+/* Body of the page. --//-- Cuerpo de la página. */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(237, 237, 237);
+    height: 100vh;
+}
+
+
+/* Navigation bar navbar. --//-- Barra de navegación navbar. */
+.navbar {
+    background-color: rgb(212, 175, 55);
+
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+
+/* Footer --/-- Pie de pagina */
+footer {
+    min-height: 250px;
+    background-color: #1b1b32;
+}
+
+footer .navbar-brand img {
+    margin-block: 1rem;
+    vertical-align: middle;
+}
+
+
+.iconos-redes a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 10px;
+    border: 3px solid white;
+    border-radius: 50%;
+    transition: all 0.2s ease-in;
+}
+
+.iconos-redes i {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.2s ease-in;
+}
+
+.iconos-redes a:hover {
+    background-color: white;
+    border: 2px solid rgb(13, 110, 253);
+}
+
+.iconos-redes a:hover i {
+    color: black;
+}
+
+.copyright {
+    font-size: 15px;
+    color: #aeaeae;
+    padding: 10px;
+}
+/* =========================== 
+         Pagina home  
+=========================== */
+.carousel-caption h5,
+.carousel-caption p {
+    color: #8B4513;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: brightness(0%);
+}
+
+/* Visualización de productos y servicios */
+.visualize {
+    padding: 40px;
+}
+
+.visualize .row div {
+    height: 250px;
+}
+
+.visualize i {
+    font-size: 2.5rem;
+    color: #7ade30;
+    background-color: #0a0a23;
+    padding: 8px 19px;
+    border-radius: 50%;
+}
+
+.visualize-title {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.visualize .column {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+/* Asegurar alineación de botones */
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.badges-container {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+/* Sección de exhibición */
+.exhibition {
+    padding: 40px;
+}
+
+.exhibition .column {
+    padding: 20px;
+    border: 2px white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: all 0.2s ease-in;
+    height: 100%;
+}
+
+.exhibition .column:hover {
+    color: white;
+    background-color: #1b1b32;
+}
+
+.exhibition .spare-parts {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.exhibition i {
+    font-size: 2rem;
+    color: #7ade30;
+    background-color: #0a0a23;
+    padding: 8px 12px;
+    border-radius: 50%;
+}
+
+.badges-container {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.badge {
+    margin: 5px;
+}
+
+/* Sección de presentación */
+.presentation {
+    background-color: rgb(237, 237, 237);
+    min-height: 100px;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+
+
+
+
+
+

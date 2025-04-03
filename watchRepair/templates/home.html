@@ -1,0 +1,118 @@
+{% extends "bases/base.html" %}
+{% load static %} <!-- Cargar los archivos estáticos de Django -->
+
+{% block title %}Inicio - Watch Repair{% endblock %}
+
+{% block content %}
+    <!-- Sección Carrusel -->
+    <section class="carousel mb-5">
+        <div id="carouselAdvertisement" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/Relojes.png' %}" class="d-block w-100" alt="relojesMyC">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Somos especialistas en la reparación y mantenimiento de relojes</h5>
+                        <p>Más de 10 años de experiencia en la reparación y mantenimiento de relojes de diversas gamas y
+                            marcas reconocidas.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/smartwatch.png' %}" class="d-block w-100" alt="smartwatch">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Nos mantenemos actualizados con los avances tecnológicos</h5>
+                        <p>Nuestro personal se actualiza constantemente para ofrecer un servicio de alta calidad en la
+                            amplia variedad de relojes tecnológicos.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/relojesdepared.png' %}" class="d-block w-100" alt="tiposreloj">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Reparamos diversos tipos de relojes</h5>
+                        <p>Nuestra sede está equipada para la reparación y el mantenimiento de una amplia variedad de
+                            relojes.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselAdvertisement"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselAdvertisement"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+    
+    <!-- Section presentation --/-- Sección de presentacion -->
+    <section class="presentation mt-5">
+        <div class="container one-presentation">
+            <h3 class="title-presentation">Explora nuestra amplia gama de productos.</h3>
+            <p class="text-section">"Contamos con una extensa variedad de productos disponibles, que abarcan desde
+                repuestos hasta accesorios y servicios, diseñados para cubrir todas sus necesidades."</p>
+        </div>
+    </section>
+    
+    <!-- Visualización de servicios y producto --//-- Product Display -->
+    <section class="exhibition clear-section">
+        <div class="container text-center">
+            <div class="row">
+                <!-- Servicios -->
+                <div class="column col-12 col-md-4">
+                    <i class="bi bi-ui-radios-grid"></i>
+                    <h5 class="spare-parts">Servicios</h5>
+                    <p>Nuestro equipo técnico garantiza un servicio de alta calidad para optimizar el rendimiento y la
+                        durabilidad de tus relojes.</p>
+                    <div class="badges-container">
+                        <a href="pages/productos.html"><button type="button" class="btn btn-warning">Reparación</button></a>
+                    </div>
+                </div>
+                <!-- Repuestos -->
+                <div class="column col-12 col-md-4">
+                    <i class="bi bi-gear-wide-connected"></i>
+                    <h5 class="spare-parts">Repuestos</h5>
+                    <p>"Traemos repuestos de primera calidad diseñados para optimizar el rendimiento y prolongar la vida
+                        útil de relojes de diferentes marcas."</p>
+                    <div class="badges-container">
+                        <a href="pages/productosTwo.html"><button type="button"
+                                class="btn btn-warning">Repuestos</button></a>
+                    </div>
+                </div>
+                <!-- Asesoria -->
+                <div class="column col-12 col-md-4">
+                    <i class="bi bi-person-bounding-box"></i>
+                    <h5 class="spare-parts">Asesoría</h5>
+                    <p>"Nuestro equipo está siempre disponible para asesorarte sobre nuestros servicios y ayudarte a
+                        descubrir nuestro catálogo de productos."</p>
+                    <div class="badges-container">
+                        <a href="pages/contactanos.html"><button type="button" class="btn btn-warning">Atención</button></a>
+                    </div>
+                </div>
+    
+            </div>
+    
+        </div>
+    </section>
+    
+    <!-- Section presentation --/-- Sección de presentacion -->
+    <section class="presentation mt-5">
+        <div class="container one-presentation">
+            <h3 class="title-presentation">Asesoramiento Experto en Reparación</h3>
+            <p class="text-section">Nuestro equipo de técnicos cuenta con amplia experiencia en reparación, garantizando soluciones efectivas y personalizadas para satisfacer tus necesidades. Con años de conocimiento en diversas marcas y tecnologías, ofrecemos un servicio confiable y profesional que asegura la calidad en cada detalle. Confía en nosotros para mantener tus productos en perfectas condiciones.</p>
+        </div>
+    </section>
+
+    <!-- Presentation of the brands section. --//-- Presentación de la sección de marcas -->
+    <section>
+        <div class="container text-center">
+            <!-- Imagenes de marcas -->
+            <div class="column col-12">
+                <img src="{% static 'images/marcasFinas.png' %}" alt="reparacion" class="image-centered">
+            </div>
+        </div>
+    </section>
+    <h2>Bienvenido a Watch Repair</h2>
+    <p>Tu mejor opción para reparar y mantener tus relojes.</p>
+{% endblock %}
