@@ -6,56 +6,5 @@
 {% block content %}
     <h2>Registrar un Nuevo Reloj</h2>
 
-    <form method="post">
-        {% csrf_token %}
-        
-        <!-- Selector de tipo de reloj -->
-        <label for="watch_type">Tipo de Reloj:</label>
-        <select id="watch_type" name="watch_type" onchange="showForm()">
-            <option value="">Seleccione un tipo de reloj</option>
-            <option value="mechanical">Mecánico</option>
-            <option value="quartz">De Cuarzo</option>
-            <option value="smart">Smartwatch</option>
-        </select>
-
-        <!-- Formulario para reloj mecánico -->
-        <div id="mechanical_form" style="display: none;">
-            <h3>Datos del Reloj Mecánico</h3>
-            {{ mechanical_form.as_p }}
-        </div>
-
-        <!-- Formulario para reloj de cuarzo -->
-        <div id="quartz_form" style="display: none;">
-            <h3>Datos del Reloj de Cuarzo</h3>
-            {{ quartz_form.as_p }}
-        </div>
-
-        <!-- Formulario para smartwatch -->
-        <div id="smart_form" style="display: none;">
-            <h3>Datos del Smartwatch</h3>
-            {{ smart_form.as_p }}
-        </div>
-
-        <button type="submit">Registrar Reloj</button>
-    </form>
-
-    <script>
-        function showForm() {
-            var watchType = document.getElementById("watch_type").value;
-            
-            document.getElementById("mechanical_form").style.display = "none";
-            document.getElementById("quartz_form").style.display = "none";
-            document.getElementById("smart_form").style.display = "none";
-
-            if (watchType === "mechanical") {
-                document.getElementById("mechanical_form").style.display = "block";
-            } else if (watchType === "quartz") {
-                document.getElementById("quartz_form").style.display = "block";
-            } else if (watchType === "smart") {
-                document.getElementById("smart_form").style.display = "block";
-            }
-        }
-    </script>
-
 {% endblock %}
 
