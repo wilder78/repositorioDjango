@@ -1,0 +1,37 @@
+{% extends "bases/base.html" %}
+{% load static %} <!-- Cargar archivos estáticos -->
+
+{% block title %}Registro - Watch Repair{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Registro de Cliente</h2>
+    
+    <form method="post" class="shadow-lg p-4 rounded bg-light">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_name" class="form-label">Nombre</label>
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_identification" class="form-label">Identificación</label>
+            {{ form.identification }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_phone" class="form-label">Teléfono</label>
+            {{ form.phone }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Correo Electrónico</label>
+            {{ form.email }}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Registrar</button>
+    </form>
+</div>
+
+{% endblock %}
