@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import CustomerForm
+from .forms import CustomerForm, EmployeeForm
 
 
 # ===============================/ Página inicial Home /======================== #
@@ -19,7 +19,8 @@ def contactUs(request):
 def services(request):
     return render(request, 'services.html')  # Página de Servicios
 
-# ===============================/ Página Servicios /======================== #
+
+# ===============================/ Página clientes /======================== #
 def register_customer(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
@@ -33,3 +34,52 @@ def register_customer(request):
         form = CustomerForm()  # Si no es POST, renderiza el formulario vacío
 
     return render(request, 'register_customer.html', {'form': form})
+
+
+# ===============================/ Página registrar empleados /======================== #
+def register_employee(request):
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda el empleado en la base de datos
+            return redirect('home')  # Redirige a la página de inicio o éxito
+    else:
+        form = EmployeeForm()  # Si no es POST, renderiza el formulario vacío
+
+    return render(request, 'register_employee.html', {'form': form})
+
+# ===============================/ Página registrar relojes /======================== #
+from django.shortcuts import render, redirect
+from .forms import MechanicalWatchForm, QuartzWatchForm, SmartWatchForm
+
+def register_watch(request):
+    """Vista para registrar un reloj de cualquier tipo."""
+    if request.method == 'POST':
+        watch_type = request.POST.get('watch_type')  # Obtiene el tipo de reloj seleccionado
+
+        # Selecciona el formulario adecuado según el tipo de reloj
+        if watch_type == 'mechanical':
+            form = MechanicalWatchForm(request.POST)
+        elif watch_type == 'quartz':
+            form = QuartzWatchForm(request.POST)
+        elif watch_type == 'smart':
+            form = SmartWatchForm(request.POST)
+        else:
+            form = None
+
+        if form and form.is_valid():
+            form.save()
+            return redirect('home')  # Redirige a la página principal después del registro
+
+    else:
+        # Si es una solicitud GET, se crean formularios vacíos para cada tipo de reloj
+        mechanical_form = MechanicalWatchForm()
+        quartz_form = QuartzWatchForm()
+        smart_form = SmartWatchForm()
+
+    return render(request, 'register_watch.html', {
+        'mechanical_form': mechanical_form,
+        'quartz_form': quartz_form,
+        'smart_form': smart_form
+    })
+
