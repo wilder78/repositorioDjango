@@ -48,6 +48,23 @@ def register_employee(request):
 
     return render(request, 'register_employee.html', {'form': form})
 
+
+# ===============================/ Página registrar proveedores /======================== #
+from django.shortcuts import render, redirect
+from .forms import SupplierForm
+
+def register_supplier(request):
+    if request.method == 'POST':
+        form = SupplierForm(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda el proveedor en la base de datos
+            return redirect('home')  # Redirige a la página de inicio o éxito
+    else:
+        form = SupplierForm()  # Si no es POST, renderiza el formulario vacío
+
+    return render(request, 'register_supplier.html', {'form': form})
+
+
 # ===============================/ Página registrar relojes /======================== #
 from django.shortcuts import render, redirect
 from .forms import MechanicalWatchForm, QuartzWatchForm, SmartWatchForm

@@ -1,0 +1,17 @@
+{% extends "bases/base.html" %}
+{% load static %} <!-- Cargar archivos estáticos -->
+
+{% block title %}Registrar Proveedor - Watch Repair{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Registro de Proveedor</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}  <!-- Renderiza el formulario con estilos -->
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+{% endblock %}

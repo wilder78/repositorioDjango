@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from services.views import home, aboutUs, contactUs, services, register_customer, register_employee, register_watch  # Importamos las nuevas vistas
+from services.views import home, aboutUs, contactUs, services, register_customer, register_employee, register_watch, register_supplier  # Importamos las nuevas vistas
 
 urlpatterns = [
     path('', home, name='home'),
@@ -26,7 +26,9 @@ urlpatterns = [
     path('register_customer/', register_customer, name='register_customer'),
     path('register_employee/', register_employee, name='register_employee'),
     path("register_watch/", register_watch, name="register_watch"),  # Ruta para registrar relojes
+    path('register_supplier/', register_supplier, name='register_supplier'),
     path('admin/', admin.site.urls),
 ]
+
 
 

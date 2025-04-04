@@ -1,5 +1,5 @@
 from django import forms
-from .models import MechanicalWatch, QuartzWatch, SmartWatch, Customer, Employee
+from .models import MechanicalWatch, QuartzWatch, SmartWatch, Customer, Employee, Supplier
 
 # ===============================/ Codigo formulario para registrar relojes /======================== #
 class MechanicalWatchForm(forms.ModelForm):
@@ -79,3 +79,22 @@ class EmployeeForm(forms.ModelForm):
             raise forms.ValidationError("Ya existe un empleado con esta identificación.")
         return identification
 
+# ===============================/ Codigo formulario para registrar proveedor /======================== #
+class SupplierForm(forms.ModelForm):
+    class Meta:
+        model = Supplier
+        fields = ['name', 'identification', 'phone', 'company', 'products']  # Campos visibles en el formulario
+
+    def clean_identification(self):
+        """Verifica si la identificación ya existe en la base de datos."""
+        identification = self.cleaned_data.get('identification')
+        if Supplier.exists_by_identification(identification):
+            raise forms.ValidationError("Ya existe un proveedor con esta identificación.")
+        return identification
+
+    def clean_company(self):
+        """Verifica que el nombre de la empresa no esté vacío."""
+        company = self.cleaned_data.get('company')
+        if not company.strip():
+            raise forms.ValidationError("El nombre de la empresa no puede estar vacío.")
+        return company
