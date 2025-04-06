@@ -14,7 +14,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
+<<<<<<< HEAD
 from django.urls import path
 from services.views import home, aboutUs, contactUs, services, register_customer, register_employee, register_watch, register_supplier  # Importamos las nuevas vistas
 
@@ -27,8 +29,19 @@ urlpatterns = [
     path('register_employee/', register_employee, name='register_employee'),
     path("register_watch/", register_watch, name="register_watch"),  # Ruta para registrar relojes
     path('register_supplier/', register_supplier, name='register_supplier'),
+=======
+from django.urls import path, include
+
+urlpatterns = [
+>>>>>>> part-01
     path('admin/', admin.site.urls),
+    path('', include('services.urls')),  #  Esto enlaza todas las rutas de tu app
 ]
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> part-01

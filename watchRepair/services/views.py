@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import CustomerForm, EmployeeForm
+from .forms import CustomerForm, EmployeeForm, MechanicalWatchForm, QuartzWatchForm, SmartWatchForm
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import MechanicalWatch, QuartzWatch, SmartWatch
+from .serializers import MechanicalWatchSerializer, QuartzWatchSerializer, SmartWatchSerializer
+
 
 
 # ===============================/ Página inicial Home /======================== #
@@ -66,8 +72,6 @@ def register_supplier(request):
 
 
 # ===============================/ Página registrar relojes /======================== #
-from django.shortcuts import render, redirect
-from .forms import MechanicalWatchForm, QuartzWatchForm, SmartWatchForm
 
 def register_watch(request):
     """Vista para registrar un reloj de cualquier tipo."""
@@ -99,4 +103,27 @@ def register_watch(request):
         'quartz_form': quartz_form,
         'smart_form': smart_form
     })
+
+
+# ===============================/ Metodos API de los modelos /======================== #
+# Obtener todos los relojes mecánicos
+@api_view(['GET'])
+def get_mechanical_watches(request):
+    watches = MechanicalWatch.objects.all()
+    serializer = MechanicalWatchSerializer(watches, many=True)
+    return Response(serializer.data)
+
+# Obtener todos los relojes de cuarzo
+@api_view(['GET'])
+def get_quartz_watches(request):
+    watches = QuartzWatch.objects.all()
+    serializer = QuartzWatchSerializer(watches, many=True)
+    return Response(serializer.data)
+
+# Obtener todos los relojes inteligentes
+@api_view(['GET'])
+def get_smart_watches(request):
+    watches = SmartWatch.objects.all()
+    serializer = SmartWatchSerializer(watches, many=True)
+    return Response(serializer.data)
 
