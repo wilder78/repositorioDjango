@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import CustomerForm, EmployeeForm, MechanicalWatchForm, QuartzWatchForm, SmartWatchForm
+from .forms import CustomerForm, EmployeeForm, SupplierForm, MechanicalWatchForm, QuartzWatchForm, SmartWatchForm
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import MechanicalWatch, QuartzWatch, SmartWatch
 from .serializers import MechanicalWatchSerializer, QuartzWatchSerializer, SmartWatchSerializer
+
 
 
 
@@ -56,8 +57,6 @@ def register_employee(request):
 
 
 # ===============================/ Página registrar proveedores /======================== #
-from django.shortcuts import render, redirect
-from .forms import SupplierForm
 
 def register_supplier(request):
     if request.method == 'POST':
@@ -72,38 +71,46 @@ def register_supplier(request):
 
 
 # ===============================/ Página registrar relojes /======================== #
-
-def register_watch(request):
-    """Vista para registrar un reloj de cualquier tipo."""
+# Reloj mecanico.
+def register_mechanical_watch(request):
     if request.method == 'POST':
-        watch_type = request.POST.get('watch_type')  # Obtiene el tipo de reloj seleccionado
-
-        # Selecciona el formulario adecuado según el tipo de reloj
-        if watch_type == 'mechanical':
-            form = MechanicalWatchForm(request.POST)
-        elif watch_type == 'quartz':
-            form = QuartzWatchForm(request.POST)
-        elif watch_type == 'smart':
-            form = SmartWatchForm(request.POST)
-        else:
-            form = None
-
-        if form and form.is_valid():
+        form = MechanicalWatchForm(request.POST)
+        if form.is_valid():
             form.save()
-            return redirect('home')  # Redirige a la página principal después del registro
-
+            return redirect('watch_success')  # Ruta de éxito
     else:
-        # Si es una solicitud GET, se crean formularios vacíos para cada tipo de reloj
-        mechanical_form = MechanicalWatchForm()
-        quartz_form = QuartzWatchForm()
-        smart_form = SmartWatchForm()
+        form = MechanicalWatchForm()
 
-    return render(request, 'register_watch.html', {
-        'mechanical_form': mechanical_form,
-        'quartz_form': quartz_form,
-        'smart_form': smart_form
-    })
+    return render(request, 'register_mechanical_watch.html', {'form': form})
 
+# Reloj de cuarzo.
+def register_quartz_watch(request):
+    if request.method == 'POST':
+        form = QuartzWatchForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('watch_success')  # Ruta de éxito después del registro
+    else:
+        form = QuartzWatchForm()
+    
+    return render(request, 'register_quartz_watch.html', {'form': form})
+
+# Smart watch.
+def register_smart_watch(request):
+    if request.method == 'POST':
+        form = SmartWatchForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "✅ Smartwatch registrado exitosamente.")
+            return redirect('register_smart_watch')  # Vuelve al mismo formulario limpio
+    else:
+        form = SmartWatchForm()
+    
+    return render(request, 'register_smart_watch.html', {'form': form})
+
+# Salida
+def watch_success_view(request):
+    return render(request, 'success.html')
 
 # ===============================/ Metodos API de los modelos /======================== #
 # Obtener todos los relojes mecánicos
