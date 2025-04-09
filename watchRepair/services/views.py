@@ -4,8 +4,11 @@ from .forms import CustomerForm, EmployeeForm, SupplierForm, MechanicalWatchForm
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Customer, Supplier, MechanicalWatch, QuartzWatch, SmartWatch
+from .models import Employee, Customer, Supplier, MechanicalWatch, QuartzWatch, SmartWatch
 from .serializers import Employee, CustomerSerializer, EmployeeSerializer, SupplierSerializer, MechanicalWatchSerializer, QuartzWatchSerializer, SmartWatchSerializer
+
+
+
 
 
 # ===============================/ Página inicial Home /======================== #
@@ -108,6 +111,77 @@ def register_smart_watch(request):
 # Salida
 def watch_success_view(request):
     return render(request, 'success.html')
+
+# ===============================/ Metodos Get para modificar o actualizar clientes /======================== #
+@api_view(['GET', 'PUT', 'DELETE'])
+def employee_detail_api(request, pk):
+    try:
+        employee = Employee.objects.get(pk=pk)
+    except Employee.DoesNotExist:
+        return Response({'error': 'Empleado no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = EmployeeSerializer(employee)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = EmployeeSerializer(employee, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        employee.delete()
+        return Response({'mensaje': 'Empleado eliminado'}, status=status.HTTP_204_NO_CONTENT)
+
+# ===============================/ Metodos Get para modificar o actualizar clientes /======================== #
+@api_view(['GET', 'PUT', 'DELETE'])
+def customer_detail_api(request, pk):
+    try:
+        customer = Customer.objects.get(pk=pk)
+    except Customer.DoesNotExist:
+        return Response({'error': 'Cliente no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = CustomerSerializer(customer)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = CustomerSerializer(customer, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        customer.delete()
+        return Response({'mensaje': 'Cliente eliminado'}, status=status.HTTP_204_NO_CONTENT)
+
+
+# ===============================/ Metodos Get para modificar o actualizar Proveedores /======================== #
+@api_view(['GET', 'PUT', 'DELETE'])
+def supplier_detail_api(request, pk):
+    try:
+        supplier = Supplier.objects.get(pk=pk)
+    except Supplier.DoesNotExist:
+        return Response({'error': 'Proveedor no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = SupplierSerializer(supplier)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = SupplierSerializer(supplier, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        supplier.delete()
+        return Response({'mensaje': 'Proveedor eliminado'}, status=status.HTTP_204_NO_CONTENT)
+
 
 # ===============================/ Metodos API de los modelos de Personas /======================== #
 # Obtener los empleados.

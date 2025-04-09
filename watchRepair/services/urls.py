@@ -1,7 +1,8 @@
-from django.urls import path
-from .views import empleados_api, suppliers_api, customers_api, register_mechanical_watch, register_quartz_watch, register_smart_watch
-from django.shortcuts import render
 from . import views
+from django.urls import path
+from django.shortcuts import render
+from .views import empleados_api, suppliers_api, customers_api, register_mechanical_watch, register_quartz_watch, register_smart_watch
+from .views import supplier_detail_api, customer_detail_api, employee_detail_api
 
 
 urlpatterns = [
@@ -16,6 +17,12 @@ urlpatterns = [
     path('clientes/registrar/', views.register_customer, name='register_customer'),
     path('empleados/registrar/', views.register_employee, name='register_employee'),
     path('suppliers/register/', views.register_supplier, name='register_supplier'),
+
+    #  Modificar o actualizar clientes, empleados y proveedores.
+    path('api/empleados/<int:pk>/', employee_detail_api, name='employee_detail_api'),
+    path('api/clientes/<int:pk>/', customer_detail_api, name='customer_detail_api'),
+    path('api/proveedores/<int:pk>/', supplier_detail_api, name='supplier_detail_api'),
+
 
     # Registrar los tipos de reloj 
     path('registrar-reloj/', register_mechanical_watch, name='register_mechanical_watch'),
@@ -34,6 +41,12 @@ urlpatterns = [
     path('api/relojes/cuarzo/', views.get_quartz_watches, name='get_quartz_watches'),
     path('api/relojes/inteligentes/', views.get_smart_watches, name='get_smart_watches'),
 ]
+
+
+
+
+
+
 
 
 
