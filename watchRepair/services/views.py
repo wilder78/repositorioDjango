@@ -4,10 +4,8 @@ from .forms import CustomerForm, EmployeeForm, SupplierForm, MechanicalWatchForm
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import MechanicalWatch, QuartzWatch, SmartWatch
-from .serializers import MechanicalWatchSerializer, QuartzWatchSerializer, SmartWatchSerializer
-
-
+from .models import Customer, Supplier, MechanicalWatch, QuartzWatch, SmartWatch
+from .serializers import Employee, CustomerSerializer, EmployeeSerializer, SupplierSerializer, MechanicalWatchSerializer, QuartzWatchSerializer, SmartWatchSerializer
 
 
 # ===============================/ Página inicial Home /======================== #
@@ -27,7 +25,7 @@ def services(request):
     return render(request, 'services.html')  # Página de Servicios
 
 
-# ===============================/ Página clientes /======================== #
+# ===============================/ Página registrar clientes /======================== #
 def register_customer(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
@@ -57,7 +55,6 @@ def register_employee(request):
 
 
 # ===============================/ Página registrar proveedores /======================== #
-
 def register_supplier(request):
     if request.method == 'POST':
         form = SupplierForm(request.POST)
@@ -112,7 +109,30 @@ def register_smart_watch(request):
 def watch_success_view(request):
     return render(request, 'success.html')
 
-# ===============================/ Metodos API de los modelos /======================== #
+# ===============================/ Metodos API de los modelos de Personas /======================== #
+# Obtener los empleados.
+@api_view(['GET'])
+def empleados_api(request):
+    empleados = Employee.objects.all()
+    serializer = EmployeeSerializer(empleados, many=True)
+    return Response(serializer.data)
+
+# Obtener los clientes.
+@api_view(['GET'])
+def customers_api(request):
+    customers = Customer.objects.all()
+    serializer = CustomerSerializer(customers, many=True)
+    return Response(serializer.data)
+
+# Obtener los proveedores.
+@api_view(['GET'])
+def suppliers_api(request):
+    suppliers = Supplier.objects.all()
+    serializer = SupplierSerializer(suppliers, many=True)
+    return Response(serializer.data)
+
+
+# ===============================/ Metodos API de los modelos de relojes /======================== #
 # Obtener todos los relojes mecánicos
 @api_view(['GET'])
 def get_mechanical_watches(request):

@@ -1,5 +1,27 @@
 from rest_framework import serializers
-from .models import MechanicalWatch, QuartzWatch, SmartWatch
+from .models import Employee, Customer, Supplier, MechanicalWatch, QuartzWatch, SmartWatch
+
+
+
+
+# ========================/ Serializador de las clases personas. /========================= #
+class EmployeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+
+class CustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = '__all__'
+
+
+class SupplierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Supplier
+        fields = '__all__'
+
+
 
 # ========================/ Serializador de las clases relojes. /========================= #
 class MechanicalWatchSerializer(serializers.ModelSerializer):
